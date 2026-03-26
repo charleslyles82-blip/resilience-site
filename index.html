@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles Lyles | Crisis Readiness, Security, and Continuity Consulting</title>
+<style>
+  :root {
+    --bg: #06101d;
+    --bg2: #0b1626;
+    --panel: rgba(255,255,255,0.05);
+    --panel-strong: rgba(255,255,255,0.08);
+    --text: #f8fafc;
+    --muted: #cad6e3;
+    --line: rgba(255,255,255,0.10);
+    --accent: #22c55e;
+    --accent-dark: #16a34a;
+    --white-btn: #f8fafc;
+    --dark-btn: #03111f;
+    --max: 1180px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, #040a12 0%, #091321 100%);
+    line-height: 1.65;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    width: min(var(--max), calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .section { padding: 82px 0; }
+  .section.alt {
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow,
+  .label {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.05);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #dce8f4;
+  }
+
+  .label {
+    margin-bottom: 12px;
+  }
+
+  h1, h2, h3, h4, p { margin-top: 0; }
+
+  h1 {
+    font-size: clamp(2.6rem, 5vw, 4.9rem);
+    line-height: 1.03;
+    margin: 18px 0 18px;
+    max-width: 920px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 3vw, 3.1rem);
+    line-height: 1.08;
+    margin-bottom: 14px;
+  }
+
+  h3 {
+    font-size: 1.22rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .lead {
+    font-size: 1.13rem;
+    color: var(--muted);
+    max-width: 780px;
+  }
+
+  .muted { color: var(--muted); }
+
+  .hero {
+    min-height: 96vh;
+    border-bottom: 1px solid var(--line);
+    background:
+      linear-gradient(rgba(3,7,18,0.72), rgba(3,7,18,0.90)),
+      url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .stats,
+  .service-grid,
+  .proof-grid,
+  .faq-grid,
+  .fit-grid,
+  .deliver-grid,
+  .contact-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: center;
+    gap: 30px;
+    padding: 92px 0;
+  }
+
+  .grid-2, .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3, .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-4, .fit-grid, .deliver-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .proof-grid, .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    border: 1px solid var(--line);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #04110a;
+    border-color: transparent;
+  }
+
+  .btn.primary:hover {
+    background: var(--accent-dark);
+    color: white;
+  }
+
+  .btn.secondary {
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+  }
+
+  .btn.white {
+    background: var(--white-btn);
+    color: var(--dark-btn);
+    border-color: transparent;
+  }
+
+  .card,
+  .panel,
+  .stat,
+  .pill,
+  .quote,
+  .faq,
+  .service,
+  .check,
+  .cta-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+  }
+
+  .card, .panel, .quote, .faq, .service { padding: 24px; }
+  .pill, .check { padding: 14px 16px; }
+  .stat { padding: 18px; }
+  .cta-box { padding: 30px; }
+
+  .stat strong {
+    display: block;
+    font-size: 1.72rem;
+    margin-bottom: 4px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 28px;
+    max-width: 760px;
+  }
+
+  .hero-side {
+    display: grid;
+    gap: 18px;
+  }
+
+  .image-card {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .image-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+
+  .image-card .content { padding: 22px; }
+
+  ul.clean {
+    margin: 14px 0 0;
+    padding-left: 20px;
+    color: #dce6f1;
+  }
+
+  ul.clean li { margin-bottom: 10px; }
+
+  .section-head {
+    max-width: 780px;
+    margin-bottom: 30px;
+  }
+
+  .pricing-note {
+    margin-top: 18px;
+    color: #d9e5f1;
+    font-weight: 700;
+  }
+
+  .quote p {
+    font-size: 1.02rem;
+    color: #e8f1fb;
+    margin-bottom: 0;
+  }
+
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 40px;
+    color: #9cb0c6;
+    font-size: 0.94rem;
+  }
+
+  @media (max-width: 1040px) {
+    .hero-grid,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .service-grid,
+    .proof-grid,
+    .faq-grid,
+    .fit-grid,
+    .deliver-grid,
+    .stats,
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-grid {
+      padding: 64px 0;
+    }
+
+    .section {
+      padding: 58px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Crisis Readiness, Security, and Continuity Consulting</div>
+      <h1>Emergency readiness and continuity reviews for organizations that cannot afford confusion, liability, or downtime.</h1>
+      <p class="lead">Charles Lyles helps private schools, property managers, manufacturers, faith based organizations, and small businesses identify emergency readiness gaps, tighten security procedures, clarify crisis leadership roles, and build continuity plans that hold up under pressure.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://calendly.com/charleslyles82/30min" target="_blank" rel="noreferrer">Book Your 30 Minute Risk Consultation</a>
+        <a class="btn secondary" href="#services">View Services</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>30 min</strong><span class="muted">Initial consultation</span></div>
+        <div class="stat"><strong>Focused</strong><span class="muted">Built for buyers with real exposure</span></div>
+        <div class="stat"><strong>Practical</strong><span class="muted">Clear next steps leadership can use</span></div>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <div class="panel image-card">
+        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=1400&q=80" alt="Workplace fire emergency response">
+        <div class="content">
+          <span class="label">Common client exposures</span>
+          <div class="check">No written emergency action plan</div>
+          <div class="check" style="margin-top: 12px;">Weak access control and visitor procedures</div>
+          <div class="check" style="margin-top: 12px;">Unclear leadership roles during incidents</div>
+          <div class="check" style="margin-top: 12px;">Poor communication during disruptions</div>
+          <div class="check" style="margin-top: 12px;">Liability exposure from predictable risks</div>
+          <div class="check" style="margin-top: 12px;">No continuity plan for outages or closures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container grid-2">
+    <div>
+      <span class="label">Why this matters</span>
+      <h2>Most organizations are not actually prepared. They are simply hoping nothing happens.</h2>
+      <p class="muted">Hope is not a readiness strategy. The real risk is not just fire, medical emergency, workplace violence, outage, or disruption. The real risk is leadership confusion, weak procedures, poor communication, and failure to act fast when pressure hits.</p>
+      <p class="muted">That is what this service is built to fix. Not with generic binders. Not with vague policy language. With practical assessments, prioritized findings, and response structures that leadership can actually use.</p>
+    </div>
+    <div class="panel">
+      <span class="label">What buyers usually need</span>
+      <ul class="clean">
+        <li>A real review of emergency readiness instead of assumptions</li>
+        <li>Clear response roles for leadership and staff</li>
+        <li>Access control and visitor management improvements</li>
+        <li>Continuity planning for outages, closures, and disruptions</li>
+        <li>Practical recommendations tied to operational risk and liability exposure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Services</span>
+      <h2>Specific services with a clear business purpose</h2>
+      <p class="muted">This homepage is built to answer the real buyer questions immediately: what do you do, who is it for, what do they get, and why should they trust you.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service">
+        <span class="label">Service 01</span>
+        <h3>30 Minute Risk Consultation</h3>
+        <p>A focused consultation to identify obvious exposure points, determine whether a full audit is needed, and give you immediate clarity on the most visible risks in your organization.</p>
+        <p class="pricing-note">Best for: leadership teams that know they have exposure but need outside perspective fast.</p>
+      </div>
+
+      <div class="service">
+        <span class="label">Service 02</span>
+        <h3>Security and Continuity Audit</h3>
+        <p>A structured review of facility security, emergency readiness, visitor management, communication procedures, leadership roles, and continuity planning vulnerabilities.</p>
+        <p class="pricing-note">Best for: organizations that need a documented assessment and a prioritized action plan.</p>
+      </div>
+
+      <div class="service">
+        <span class="label">Service 03</span>
+        <h3>On Call Crisis Support</h3>
+        <p>Ongoing advisory support for organizations that want a trusted outside professional available for incident guidance, plan updates, response structure, and readiness support.</p>
+        <p class="pricing-note">Best for: businesses that want support beyond a one time review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container grid-2">
+    <div>
+      <span class="label">Founder</span>
+      <h2>Meet Charles Lyles</h2>
+      <p class="muted">Charles Lyles is a Senior Contracting Officer with Department of Defense experience, a combat veteran, and a former Tactical Air Traffic Control Facility Chief with a background in physical security and a bachelor’s degree in Homeland Security and Emergency Management.</p>
+      <p class="muted">He has operated in environments where planning, communication, leadership, and execution directly affect outcomes. He also holds a Certified Agile Professional credential through Six Sigma Global Institute, bringing process discipline and structured problem solving to a crisis readiness practice built on real world pressure.</p>
+      <p class="muted">This is not academic consulting. It is a direct assessment of where organizations are exposed and what leadership needs to fix before an incident proves it the hard way.</p>
+    </div>
+
+    <div class="panel">
+      <span class="label">Credibility</span>
+      <ul class="clean">
+        <li>Senior Contracting Officer supporting Department of Defense operations</li>
+        <li>Combat veteran</li>
+        <li>Former Tactical Air Traffic Control Facility Chief</li>
+        <li>Certified Agile Professional through Six Sigma Global Institute</li>
+        <li>Bachelor’s degree in Homeland Security and Emergency Management</li>
+        <li>Physical security and crisis response leadership experience</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">What clients receive</span>
+      <h2>Deliverables leadership can actually use</h2>
+      <p class="muted">Buyers need to know what they walk away with. These deliverables make the offer concrete, useful, and worth paying attention to.</p>
+    </div>
+
+    <div class="deliver-grid">
+      <div class="pill">Executive summary for leadership</div>
+      <div class="pill">Documented risk and vulnerability findings</div>
+      <div class="pill">Emergency readiness gap review</div>
+      <div class="pill">Access control and visitor procedure observations</div>
+      <div class="pill">Continuity planning priorities</div>
+      <div class="pill">Severity ranked recommendations</div>
+      <div class="pill">Practical action roadmap</div>
+      <div class="pill">Next step guidance for follow on support</div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Best fit</span>
+      <h2>Who this is for</h2>
+      <p class="muted">The right fit is leadership that knows exposure exists and is ready to address it before an incident forces the issue.</p>
+    </div>
+
+    <div class="fit-grid">
+      <div class="pill">Private schools</div>
+      <div class="pill">Property management groups</div>
+      <div class="pill">Manufacturing facilities</div>
+      <div class="pill">Faith based organizations</div>
+      <div class="pill">Small and mid sized businesses</div>
+      <div class="pill">Community and multi use facilities</div>
+      <div class="pill">Leaders with no formal emergency plan</div>
+      <div class="pill">Organizations that want practical recommendations, not theory</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Proof</span>
+      <h2>Case style results and buyer logic</h2>
+      <p class="muted">Until you have real client testimonials, this is the right way to handle proof: believable, outcome focused, and tied to business value.</p>
+    </div>
+
+    <div class="proof-grid">
+      <div class="quote">
+        <h3>Facility Readiness Assessment Result</h3>
+        <p>Conducted a structured readiness review for a multi use facility environment, identifying gaps in emergency response coordination, access control procedures, and leadership roles during incidents. Delivered a prioritized action plan that gave leadership immediate clarity on responsibilities, response procedures, and risk reduction steps.</p>
+      </div>
+      <div class="quote">
+        <h3>Why organizations buy this service</h3>
+        <p>Organizations do not need another binder full of theory. They need a direct assessment of what will fail under pressure, where liability exposure exists, and what leadership should fix now before an incident forces the issue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Process</span>
+      <h2>How the engagement works</h2>
+      <p class="muted">Buyers hesitate when the path is unclear. This section shows exactly how the engagement moves from concern to action.</p>
+    </div>
+
+    <div class="grid-4">
+      <div class="card">
+        <div class="label">Step 01</div>
+        <h3>Book the consultation</h3>
+        <p class="muted">Start with a 30 minute call to discuss your facility, your concerns, and where you believe the risks may be.</p>
+      </div>
+      <div class="card">
+        <div class="label">Step 02</div>
+        <h3>Determine fit and scope</h3>
+        <p class="muted">If a deeper review is needed, the scope is clarified so expectations are clean and the engagement has a defined purpose.</p>
+      </div>
+      <div class="card">
+        <div class="label">Step 03</div>
+        <h3>Conduct the review</h3>
+        <p class="muted">Security, emergency readiness, leadership roles, communication, and continuity vulnerabilities are reviewed through a practical operational lens.</p>
+      </div>
+      <div class="card">
+        <div class="label">Step 04</div>
+        <h3>Receive findings and next steps</h3>
+        <p class="muted">You receive clear findings, prioritized recommendations, and guidance on what to fix first based on operational impact and exposure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Questions buyers ask</span>
+      <h2>Frequently asked questions</h2>
+      <p class="muted">This removes hesitation and answers the objections that vague sites ignore.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq">
+        <h3>Is this only for large organizations?</h3>
+        <p class="muted">No. Small and mid sized organizations often have the most exposure because they operate without formal readiness structures or documented response plans.</p>
+      </div>
+      <div class="faq">
+        <h3>Is this emergency management consulting or security consulting?</h3>
+        <p class="muted">It is both where they overlap operationally: emergency readiness, crisis response structure, continuity planning, and practical risk reduction.</p>
+      </div>
+      <div class="faq">
+        <h3>What if we already have a plan?</h3>
+        <p class="muted">Most plans look fine on paper. The question is whether leadership and staff can actually execute them under pressure. That is where the real gaps usually show up.</p>
+      </div>
+      <div class="faq">
+        <h3>What is the first step?</h3>
+        <p class="muted">Book the consultation. That call clarifies whether a quick advisory conversation is enough or whether a formal review is the smarter move.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container contact-grid">
+    <div class="cta-box">
+      <span class="label">Book now</span>
+      <h2>Schedule your 30 minute consultation</h2>
+      <p class="muted">Book directly using the scheduling link below. The goal is simple: identify obvious risk exposure, determine whether a formal audit makes sense, and leave with clarity on the next step.</p>
+      <div class="actions">
+        <a class="btn white" href="https://calendly.com/charleslyles82/30min" target="_blank" rel="noreferrer">Book Your 30 Minute Risk Consultation</a>
+      </div>
+      <div class="panel" style="max-width: 360px; margin-top: 22px;">
+        <span class="label">Email</span>
+        <div>charleslyles82@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <span class="label">Before you book</span>
+      <ul class="clean">
+        <li>You know your organization has risk exposure but no clear plan</li>
+        <li>You want an outside review of security, readiness, or continuity gaps</li>
+        <li>You need practical recommendations, not academic language</li>
+        <li>You are ready to act on findings instead of delaying them</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">© 2026 Charles Lyles | Crisis Readiness, Security, and Continuity Consulting</div>
+</footer>
+
+</body>
+</html>
